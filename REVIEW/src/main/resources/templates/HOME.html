@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Reseña </title>
+</head>
+<body>
+<h2>Agregar Reseña</h2>
+<form id="reviewForm">
+
+    <label for="quialification">Calificación:</label><br>
+    <input type="text" id="quialification" name="quialification" required><br><br>
+
+    <label for="comment">Comentario</label><br>
+    <input type="text" id="comment" name="comment" required><br><br>
+
+    <label for="date">Fecha:</label><br>
+    <input type="text" id="date" name="date" required><br><br>
+
+    <button type="button" onclick="submitForm()">Agregar Reseña</button>
+</form>
+
+<script>
+    function submitForm() {
+        const form = document.getElementById('userForm');
+        const data = {
+            name: form.name.value,
+            lastname: form.lastname.value,
+            email: form.email.value,
+            phonenumber: form.phonenumber.value,
+            password: form.password.value
+        };
+
+        fetch('/api/Review', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+    }
+</script>
+</body>
+</html>

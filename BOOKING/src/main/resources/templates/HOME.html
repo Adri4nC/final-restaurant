@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Agregar Reserva</title>
+</head>
+<body>
+<h2>Agregar Reserva</h2>
+<form id="bookingForm">
+
+    <label for="date">Fecha:</label><br>
+    <input type="date" id="date" name="date" required><br><br>
+
+    <label for="idRestaurant">Restaurante:</label><br>
+    <select id="idRestaurant" name="idRestaurant" required></select><br><br>
+
+    <label for="idUser">ID de Usuario:</label><br>
+    <input id="idUser"  name="idUser" required><br><br>
+
+    <label for="numPeople">Número de Personas:</label><br>
+    <input type="number" id="numPeople" name="numPeople" required><br><br>
+
+    <label for="time">Hora:</label><br>
+    <input type="time" id="time" name="time" required><br><br>
+
+    <button type="button" onclick="submitForm()">Agregar Reserva</button>
+</form>
+
+<div id="message"></div>
+
+<script>
+    function loadRestaurants() {
+        fetch('http://localhost:8080/api/restaurants')
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data from restaurants API:', data); // Verifica la estructura de los datos
+                const restaurantSelect = document.getElementById('idRestaurant');
+                data.forEach(restaurant => {
+                    const option = document.createElement('option');
+                    option.value = restaurant.id;
+                    option.text = restaurant.name;
+                    restaurantSelect.add(option);
+                });
+            })
+            .catch(error => {
+                console.error('Error al cargar los restaurantes:', error);
+                document.getElementById('message').innerHTML = '<p style="color: red;">Error al cargar los restaurantes.</p>';
+            });
+    }
+
+    window.onload = loadRestaurants;
+
+    function submitForm() {
+        const form = document.getElementById('bookingForm');
+        const data = {
+            date: form.date.value,
+            idRestaurant: form.idRestaurant.value,
+            idUser: form.idUser.value,
+            numPeople: form.numPeople.value,
+            time: form.time.value
+        };
+
+        fetch('http://localhost:8080/api/bookings', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
+        })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('Data from booking API:', data); // Verifica la estructura de los datos
+                document.getElementById('message').innerHTML = '<p style="color: green;">Reserva agregada correctamente!</p>';
+            })
+            .catch(error => {
+                console.error('Error al agregar la reserva:', error);
+                document.getElementById('message').innerHTML = '<p style="color: red;">Error al agregar la reserva. Inténtelo de nuevo.</p>';
+            });
+    }
+</script>
+</body>
+</html>

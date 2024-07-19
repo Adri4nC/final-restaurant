@@ -1,0 +1,115 @@
+.u-section-1 .u-sheet-1 {
+  min-height: 203px;
+}
+
+.u-section-1 .u-image-1 {
+  width: 282px;
+  height: 163px;
+  margin: 23px auto 18px;
+}
+
+.u-section-2 {
+  min-height: 694px;
+}
+
+.u-section-2 .u-layout-wrap-1 {
+  margin: 1px 0 -1px;
+}
+
+.u-section-2 .u-layout-cell-1 {
+  min-height: 694px;
+}
+
+.u-section-2 .u-container-layout-1 {
+  padding: 0;
+}
+
+.u-section-2 .u-list-1 {
+  margin-bottom: 0;
+  margin-top: 0;
+}
+
+.u-section-2 .u-repeater-1 {
+  grid-auto-columns: calc(50% - 5px);
+  grid-template-columns: repeat(2, calc(50% - 5px));
+  min-height: 694px;
+  grid-gap: 10px;
+}
+
+.u-section-2 .u-container-layout-2,
+.u-section-2 .u-container-layout-3 {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.u-section-2 .u-image-container {
+  height: 700px; /* Establece la misma altura para ambas imágenes */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.u-section-2 .u-image-1,
+.u-section-2 .u-image-2 {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.u-section-2 .u-btn-1,
+.u-section-2 .u-btn-2 {
+  background-image: none;
+  --radius: 10px;
+  font-weight: 700;
+  margin: 20px auto 0;
+  padding: 13px 37px 14px;
+}
+
+@media (max-width: 1199px) {
+  .u-section-2 {
+    min-height: 572px;
+  }
+
+  .u-section-2 .u-layout-wrap-1 {
+    margin-right: initial;
+    margin-left: initial;
+  }
+
+  .u-section-2 .u-layout-cell-1 {
+    min-height: 572px;
+  }
+
+  .u-section-2 .u-repeater-1 {
+    min-height: 411px;
+  }
+
+  .u-section-2 .u-btn-1,
+  .u-section-2 .u-btn-2 {
+    --radius: 11px;
+    padding: 17px 71px 17px 69px;
+  }
+}
+
+@media (max-width: 991px) {
+  .u-section-2 {
+    min-height: 100px;
+  }
+
+  .u-section-2 .u-layout-cell-1 {
+    min-height: 100px;
+  }
+
+  .u-section-2 .u-repeater-1 {
+    grid-auto-columns: calc(100% - 0px);
+    grid-template-columns: 100%;
+  }
+}
+
+@media (max-width: 767px) {
+  .u-section-2 .u-repeater-1 {
+    grid-auto-columns: 100%;
+  }
+}
